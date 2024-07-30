@@ -1,0 +1,48 @@
+syntax = "proto3";
+package nevod_grpc;
+
+import "nodes_crud.proto";
+import "links_crud.proto";
+
+message EmptyInput {
+  string empty = 1;
+}
+
+message EmptyRes {
+  string ok = 1;
+}
+
+message IdInput {
+  uint32 id = 1;
+}
+
+enum PathIdType {
+  NODE = 0;
+  LINK = 1;
+}
+
+message PathesResult {
+  repeated Node nodes = 1;
+  repeated Link links = 2;
+  repeated Path pathes = 3;
+}
+
+message PathResult {
+  repeated Node nodes = 1;
+  repeated Link links = 2;
+  Path path = 3;
+}
+
+message Path {
+  repeated PathId ids = 1;
+}
+
+message PathId {
+  PathIdType id_type = 1;
+  string node_id = 2;
+  uint32 link_id = 3;
+}
+
+message BoolRes {
+  bool res = 1;
+}

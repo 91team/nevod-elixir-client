@@ -1,0 +1,27 @@
+syntax = "proto3";
+package nevod_grpc;
+
+message Graph {
+  uint32 id = 1;
+  string name = 2;
+  uint32 db_id = 3;
+}
+
+message GraphList {
+  repeated Graph data = 1;
+}
+
+message GraphInput {
+  string name = 1;
+  uint32 db_id = 2;
+}
+
+message GraphDbInput {
+  uint32 db_id = 1;
+}
+
+message GraphUpdInput {
+  uint32 id = 1;
+  string name = 2;
+  uint32 db_id = 3;
+}

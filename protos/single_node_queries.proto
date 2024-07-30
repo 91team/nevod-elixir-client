@@ -1,0 +1,33 @@
+syntax = "proto3";
+package nevod_grpc;
+
+import "nodes_crud.proto";
+import "links_crud.proto";
+
+enum KHopMode {
+  IN = 0;
+  OUT = 1;
+  ALL = 2;
+}
+
+message KHopeResult {
+  repeated Node nodes = 1;
+  repeated Link links = 2;
+}
+
+message CountResult {
+  uint32 count = 1;
+}
+
+message KHopInput {
+  uint32 graph_id = 1;
+  string id = 2;
+  uint32 k = 3;
+  KHopMode mode = 4;
+}
+
+message GetCyclesInput {
+  uint32 graph_id = 1;
+  string id = 2;
+  uint32 links_limit = 3;
+}

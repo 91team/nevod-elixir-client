@@ -1,0 +1,52 @@
+syntax = "proto3";
+package nevod_grpc;
+
+enum DirectionType {
+  ONEWAY = 0;
+  BOTHWAYS = 1;
+}
+
+message Link {
+  string from_node_id = 1;
+  string to_node_id = 2;
+  DirectionType dir_type = 3;
+
+  map<string, float> float_opts = 4;
+  map<string, int64> int_opts = 5;
+  map<string, string> string_opts = 6;
+  map<string, bool> bool_opts = 7;
+  map<string, bytes> bytes_opts = 8;
+
+  uint32 id = 9;
+}
+
+message LinksListInput {
+  repeated Link data = 1;
+  uint32 graph_id = 2;
+}
+
+message LinkInput {
+  DirectionType dir_type = 1;
+
+  map<string, float> float_opts = 2;
+  map<string, int64> int_opts = 3;
+  map<string, string> string_opts = 4;
+  map<string, bool> bool_opts = 5;
+  map<string, bytes> bytes_opts = 6;
+
+  uint32 graph_id = 7;
+  uint32 id = 8;
+}
+
+message LinkList {
+  repeated Link data = 1;
+}
+
+message LinkGraphInput {
+  uint32 graph_id = 1;
+}
+
+message LinkGraphIdInput {
+  uint32 graph_id = 1;
+  uint32 id = 2;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+package nevod_grpc;
+
+message Db {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message DbList {
+  repeated Db data = 1;
+}
+
+message DbInput {
+  string name = 1;
+}

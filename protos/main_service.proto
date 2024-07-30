@@ -1,0 +1,67 @@
+syntax = "proto3";
+package nevod_grpc;
+import "common.proto";
+import "db_crud.proto";
+import "graphs_crud.proto";
+import "nodes_crud.proto";
+import "links_crud.proto";
+import "single_node_queries.proto";
+import "two_node_queries.proto";
+import "n_node_queries.proto";
+
+service Service {
+  rpc ping(EmptyInput) returns (EmptyRes) {}
+
+  // DbCrud
+  rpc create_db(DbInput) returns (Db) {}
+  rpc update_db(Db) returns (Db) {}
+  rpc read_db(EmptyInput) returns (DbList) {}
+  rpc delete_db(IdInput) returns (EmptyRes) {}
+
+  // GraphsCrud
+  rpc create_graph(GraphInput) returns (Graph) {}
+  rpc update_graph(GraphUpdInput) returns (Graph) {}
+  rpc read_graphs(GraphDbInput) returns (GraphList) {}
+  rpc delete_graph(IdInput) returns (EmptyRes) {}
+
+  // NodesCrud
+  rpc create_nodes(NodesListInput) returns (EmptyRes) {}
+  rpc update_node(NodeInput) returns (Node) {}
+  rpc read_nodes(NodeGraphInput) returns (NodeList) {}
+  rpc get_node(NodeGraphIdInput) returns (Node) {}
+  rpc delete_node(NodeGraphIdInput) returns (EmptyRes) {}
+
+  // LinksCrud
+  rpc create_links(LinksListInput) returns (EmptyRes) {}
+  rpc update_link(LinkInput) returns (Link) {}
+  rpc read_links(LinkGraphInput) returns (LinkList) {}
+  rpc get_link(LinkGraphIdInput) returns (Link) {}
+  rpc delete_link(LinkGraphIdInput) returns (EmptyRes) {}
+
+  // SingleNodeQueries
+  rpc get_in_links_count(NodeGraphIdInput) returns (CountResult) {}
+  rpc get_out_links_count(NodeGraphIdInput) returns (CountResult) {}
+  rpc get_all_links_count(NodeGraphIdInput) returns (CountResult) {}
+  rpc get_in_links(NodeGraphIdInput) returns (LinkList) {}
+  rpc get_out_links(NodeGraphIdInput) returns (LinkList) {}
+  rpc get_all_links(NodeGraphIdInput) returns (LinkList) {}
+  rpc get_k_hop(KHopInput) returns (KHopeResult) {}
+  rpc get_cycles(GetCyclesInput) returns (PathesResult) {}
+
+  // TwoNodeQueries
+  rpc get_shortest_path(TwoNodesInput) returns (PathResult) {}
+  rpc get_all_shortest_pathes(TwoNodesInput) returns (PathesResult) {}
+  rpc get_two_minimal_pathes(TwoNodesInput) returns (PathesResult) {}
+  rpc get_minimal_common_neighbours(CommonNeighboursInput) returns (CommonNeighboursResult) {}
+  rpc get_max_stream(TwoNodesInput) returns (PathResult) {}
+  rpc get_minimum_price_stream(TwoNodesInput) returns (PathResult) {}
+
+  // NNodeQueries
+  rpc get_travelling_salesman_path(NNodesInput) returns (PathResult) {}
+  rpc get_is_clique(NNodesInput) returns (BoolRes) {}
+  rpc get_is_connectivity_area(NNodesInput) returns (BoolRes) {}
+  rpc get_minimal_cut(NNodesInput) returns (NodeList) {}
+  rpc get_topo_sort(NNodesInput) returns (NodeList) {}
+  rpc get_median(NNodesInput) returns (Node) {}
+  rpc get_isomorphs(NNodesInput) returns (IsomorphsResult) {}
+}

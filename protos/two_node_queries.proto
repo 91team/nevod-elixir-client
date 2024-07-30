@@ -1,0 +1,29 @@
+syntax = "proto3";
+package nevod_grpc;
+
+import "nodes_crud.proto";
+import "links_crud.proto";
+import "common.proto";
+import "single_node_queries.proto";
+
+message TwoNodesInput {
+  uint32 graph_id = 1;
+  string node1_id = 2;
+  string node2_id = 3;
+  uint32 links_limit = 4;
+}
+
+message CommonNeighboursInput {
+  uint32 graph_id = 1;
+  string node1_id = 2;
+  string node2_id = 3;
+  uint32 links_limit = 4;
+  KHopMode mode = 5;
+}
+
+message CommonNeighboursResult {
+  repeated Node nodes = 1;
+  repeated Link links = 2;
+  repeated string neighbour_ids = 3;
+  repeated Path pathes = 4;
+}

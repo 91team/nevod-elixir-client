@@ -1,0 +1,19 @@
+syntax = "proto3";
+package nevod_grpc;
+
+import "nodes_crud.proto";
+import "links_crud.proto";
+
+message NNodesInput {
+  uint32 graph_id = 1;
+  repeated string node_ids = 2;
+}
+
+message IsomorphsResult {
+  repeated Isomorph isomorphs = 1;
+}
+
+message Isomorph {
+  repeated Node nodes = 1;
+  repeated Link links = 2;
+}
